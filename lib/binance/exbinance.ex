@@ -336,7 +336,7 @@ defmodule Exbinance do
         new_client_order_id \\ nil,
         stop_price \\ nil,
         iceberg_quantity \\ nil,
-        receiving_window \\ 1000,
+        receiving_window \\ 2000,
         timestamp \\ nil
       ) do
     timestamp =
