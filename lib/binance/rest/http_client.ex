@@ -40,7 +40,7 @@ defmodule Exbinance.Rest.HTTPClient do
 
       _ ->
         headers = [{"X-MBX-APIKEY", api_key}]
-        receive_window = 5000
+        receive_window = 10000
         ts = DateTime.utc_now() |> DateTime.to_unix(:millisecond)
 
         params =
