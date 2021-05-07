@@ -235,9 +235,7 @@ defmodule Exbinance do
   Please read https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md#account-information-user_data to understand API
   """
 
-  def get_account() do
-    api_key = Application.get_env(:binance, :api_key)
-    secret_key = Application.get_env(:binance, :secret_key)
+  def get_account(%{api_key: api_key, secret_key: secret_key} = _credentials) do
 
     case HTTPClient.get_binance("/api/v3/account", %{}, secret_key, api_key) do
       {:ok, data} -> {:ok, Exbinance.Account.new(data)}
