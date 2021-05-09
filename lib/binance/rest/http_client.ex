@@ -1,8 +1,8 @@
 defmodule Exbinance.Rest.HTTPClient do
   alias Exbinance.Credentials
 
-  # @endpoint Application.get_env(:binance, :end_point, "https://api.binance.com")
-   @endpoint "https://testnet.binance.vision"
+  @endpoint Application.get_env(:binance, :end_point, "https://api.binance.com")
+  #  @endpoint "https://testnet.binance.vision"
 
   def get_binance(url, headers \\ []) do
     HTTPoison.get("#{@endpoint}#{url}", headers)
