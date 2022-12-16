@@ -53,7 +53,8 @@ defmodule Exbinance.Rest.HTTPClient do
         argument_string = URI.encode_query(params)
 
         signature =
-          :crypto.hmac(
+          :crypto.mac(
+            :hmac,
             :sha256,
             secret_key,
             argument_string
@@ -102,7 +103,7 @@ defmodule Exbinance.Rest.HTTPClient do
 
   """
   def unsigned_request_binance(
-        %Credentials{secret_key: secret_key, api_key: api_key} = _credentials,
+        %Credentials{secret_key: _secret_key, api_key: api_key} = _credentials,
         url,
         data,
         method
@@ -190,8 +191,8 @@ defmodule Exbinance.Rest.HTTPClient do
   end
 
   defp generate_signature(secret_key, argument_string) do
-    signature =
-      :crypto.hmac(
+      :crypto.mac(
+        :hmac,
         :sha256,
         secret_key,
         argument_string
